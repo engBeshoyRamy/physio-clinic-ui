@@ -33,11 +33,13 @@ function StatBadge({ value, label, icon: Icon, delay }) {
 
 function scrollToSection(id) {
   const el = document.getElementById(id)
-  if (el) {
-    const offset = 80
-    const top = el.getBoundingClientRect().top + window.scrollY - offset
-    window.scrollTo({ top, behavior: 'smooth' })
-  }
+
+  if (!el) return
+
+  el.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  })
 }
 
 export function Hero() {
@@ -180,7 +182,7 @@ export function Hero() {
                 onClick={() => scrollToSection('contact')}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 bg-navy text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-body font-500 text-sm md:text-base shadow-soft hover:shadow-hover transition-all duration-200 cursor-pointer"
+                className=" relative z-20 inline-flex items-center gap-2 bg-navy text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-body font-500 text-sm md:text-base shadow-soft hover:shadow-hover transition-all duration-200 cursor-pointer"
               >
                 Book Consultation
                 <ArrowRight className="w-4 h-4" />
@@ -191,7 +193,7 @@ export function Hero() {
                 onClick={() => scrollToSection('skills')}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 bg-transparent text-navy border border-navy/20 px-6 md:px-8 py-3 md:py-4 rounded-xl font-body font-500 text-sm md:text-base hover:bg-navy/5 hover:border-navy/40 transition-all duration-200 cursor-pointer"
+                className="relative z-20 inline-flex items-center gap-2 bg-transparent text-navy border border-navy/20 px-6 md:px-8 py-3 md:py-4 rounded-xl font-body font-500 text-sm md:text-base hover:bg-navy/5 hover:border-navy/40 transition-all duration-200 cursor-pointer"
               >
                 View Expertise
               </motion.button>
