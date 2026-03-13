@@ -59,7 +59,7 @@ export function Skills() {
           <div className="lg:sticky lg:top-28">
             <SectionHeader
               eyebrow="Skills"
-              title={<>Clinical<br />skill<br /><span className="gradient-text italic">arsenal</span></>}
+              title={<>Clinical<br />skill<br /><span className="gradient-text italic"></span></>}
               subtitle="A comprehensive toolkit of evidence-based therapeutic modalities for optimal patient outcomes."
             />
 
