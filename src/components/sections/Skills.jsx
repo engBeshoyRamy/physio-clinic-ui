@@ -1,101 +1,128 @@
 import { motion } from 'framer-motion'
-import {
-  Hand, Scan, Activity, Zap, CircleDot, Layers, Shield
-} from 'lucide-react'
+import { Hand, Zap, CircleDot, Layers, Scan, Activity, Shield } from 'lucide-react'
 import { useScrollAnimation, staggerContainerVariants, staggerItemVariants } from '../../hooks/useScrollAnimation'
 import { SectionHeader } from '../ui/SectionHeader'
 import { skills } from '../../data/data'
 
 const iconMap = {
-  Hands: Hand,
-  Syringe: Zap,
+  Hands:     Hand,
+  Syringe:   Zap,
   CircleDot: CircleDot,
-  Bandage: Layers,
-  Scan: Scan,
-  Activity: Activity,
-  Zap: Shield,
+  Bandage:   Layers,
+  Scan:      Scan,
+  Activity:  Activity,
+  Zap:       Shield,
 }
 
-function SkillCard({ skill, index }) {
+const skillConfig = [
+  { accent: '#0F4C81' },
+  { accent: '#0A9396' },
+  { accent: '#059669' },
+  { accent: '#C2410C' },
+  { accent: '#0A6C74' },
+  { accent: '#6D28D9' },
+  { accent: '#B45309' },
+]
+
+function SkillRow({ skill, index, config, inView }) {
   const Icon = iconMap[skill.icon] || Activity
 
   return (
     <motion.div
       variants={staggerItemVariants}
-      whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ duration: 0.25 }}
-      className="group relative bg-white border border-border rounded-2xl p-6 shadow-card hover:shadow-hover hover:border-navy/20 transition-all duration-300 cursor-default overflow-hidden"
+      className="group relative flex items-start gap-5 md:gap-8 py-6 border-b border-border last:border-none hover:bg-white/60 transition-colors duration-200 px-4 md:px-6 rounded-xl -mx-4 md:-mx-6 cursor-default"
     >
-      {/* Number watermark */}
-      <div className="absolute top-3 right-4 font-display font-700 text-7xl text-gray-100 leading-none select-none group-hover:text-navy/5 transition-colors duration-300">
+      {/* Index number */}
+      <span
+        className="font-mono text-[11px] font-600 mt-1 flex-shrink-0 w-6 text-right opacity-30 group-hover:opacity-70 transition-opacity duration-200"
+        style={{ color: config.accent }}
+      >
         {String(index + 1).padStart(2, '0')}
-      </div>
+      </span>
 
       {/* Icon */}
-      <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-navy/8 to-teal/8 border border-navy/10 flex items-center justify-center mb-5 group-hover:from-navy/15 group-hover:to-teal/15 transition-all duration-300">
-        <Icon className="w-5 h-5 text-navy" />
+      <div
+        className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+        style={{ backgroundColor: `${config.accent}12` }}
+      >
+        <Icon style={{ width: '18px', height: '18px', color: config.accent }} />
       </div>
 
-      {/* Content */}
-      <h3 className="font-body font-600 text-gray-900 text-base mb-2">{skill.name}</h3>
-      <p className="font-body text-sm text-gray-500 leading-relaxed relative z-10">{skill.description}</p>
+      {/* Name + description */}
+      <div className="flex-1 min-w-0">
+        <h3 className="font-body font-600 text-gray-900 text-base md:text-[17px] leading-snug mb-1.5 group-hover:text-navy transition-colors duration-200">
+          {skill.name}
+        </h3>
+        <p className="font-body text-sm text-gray-500 leading-relaxed">
+          {skill.description}
+        </p>
+      </div>
 
-      {/* Bottom gradient line on hover */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-navy to-teal scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left rounded-full" />
+      {/* Animated dot — right side on hover */}
+      <div
+        className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        style={{ backgroundColor: config.accent }}
+      />
     </motion.div>
   )
 }
 
 export function Skills() {
   const { ref, inView } = useScrollAnimation({ threshold: 0.05 })
+  const { ref: leftRef, inView: leftInView } = useScrollAnimation({ threshold: 0.1 })
 
   return (
     <section id="skills" className="section-padding bg-surface relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-gradient-radial from-navy/4 to-transparent blur-3xl" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-gradient-radial from-navy/4 to-transparent blur-3xl pointer-events-none" />
 
       <div className="container-max relative">
-        <div className="grid lg:grid-cols-[1fr,2fr] gap-16 items-start">
-          {/* Left */}
-          <div className="lg:sticky lg:top-28">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-16 lg:gap-24 items-start">
+
+          {/* ── LEFT — sticky header ── */}
+          <motion.div
+            ref={leftRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={leftInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="lg:sticky lg:top-28"
+          >
             <SectionHeader
-              eyebrow="Skills"
-              title={<>Clinical<br />skill<br /><span className="gradient-text italic"></span></>}
-              subtitle="A comprehensive toolkit of evidence-based therapeutic modalities for optimal patient outcomes."
+              eyebrow="Clinical Skills"
+              title={<>Therapeutic<br /><span className="gradient-text italic">expertise</span></>}
+              subtitle="Evidence-based modalities applied with clinical precision and deep anatomical understanding."
             />
 
-            <div className="mt-8 space-y-3">
-              {[
-              ].map((bar, i) => (
-                <div key={bar.label}>
-                  <div className="flex justify-between text-xs font-body mb-1.5">
-                    <span className="text-gray-600 font-400">{bar.label}</span>
-                    <span className="text-navy font-500 font-mono">{bar.pct}%</span>
-                  </div>
-                  <div className="h-1.5 bg-border rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={inView ? { width: `${bar.pct}%` } : { width: 0 }}
-                      transition={{ delay: 0.4 + i * 0.15, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                      className="h-full bg-gradient-to-r from-navy to-teal rounded-full"
-                    />
-                  </div>
-                </div>
-              ))}
+            {/* Count badge */}
+            <div className="mt-8 inline-flex items-center gap-3 bg-white border border-border rounded-2xl px-5 py-4 shadow-soft">
+              <div className="font-display font-700 text-3xl gradient-text leading-none">
+                {skills.length}
+              </div>
+              <div>
+                <div className="font-body font-500 text-gray-900 text-sm">Therapeutic</div>
+                <div className="font-body text-xs text-gray-400">Modalities</div>
+              </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Grid */}
+          {/* ── RIGHT — skill list ── */}
           <motion.div
             ref={ref}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
             variants={staggerContainerVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="bg-white/50 border border-border rounded-3xl px-4 md:px-6 py-2 shadow-soft"
           >
             {skills.map((skill, index) => (
-              <SkillCard key={skill.id} skill={skill} index={index} />
+              <SkillRow
+                key={skill.id}
+                skill={skill}
+                index={index}
+                config={skillConfig[index] ?? skillConfig[0]}
+                inView={inView}
+              />
             ))}
           </motion.div>
+
         </div>
       </div>
     </section>
