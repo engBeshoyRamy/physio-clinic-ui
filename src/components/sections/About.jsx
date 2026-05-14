@@ -51,7 +51,7 @@ export function About() {
                   <div className="inline-flex items-center gap-2 bg-gradient-to-r from-navy/5 to-teal/5 border border-navy/10 rounded-full px-3 md:px-4 py-1.5">
                     <Trophy className="w-3 h-3 md:w-3.5 md:h-3.5 text-navy" />
                     <span className="font-mono text-[10px] md:text-[11px] text-navy font-500 tracking-wider">
-                      GPA {doctorInfo.education.gpa}
+                      Rehabilitated 200+ musculoskeletal cases, ensuring a pain-free return to work and full functional mobility.
                     </span>
                   </div>
                 </div>
@@ -153,9 +153,9 @@ export function About() {
             {/* Stats grid */}
             <div className="grid grid-cols-2 gap-3 md:gap-4 mt-8">
               {[
-                { value: '2+',  label: 'Years Clinical Experience'  },
-                { value: '5+',  label: 'Professional Certifications' },
-                { value: '3',   label: 'Practice Locations'          },
+                { value: '3+',  label: 'Years Clinical Experience'  },
+                { value: '12+',  label: 'Professional Certifications' },
+                { value: '4',   label: 'Practice Locations'          },
                 { value: '2027', label: "Master's Degree Target"     },
               ].map((stat, i) => (
                 <motion.div

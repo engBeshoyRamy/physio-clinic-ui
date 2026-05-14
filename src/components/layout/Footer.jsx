@@ -1,49 +1,66 @@
-import { Activity, MapPin, Phone, Mail, Facebook, Instagram, Linkedin } from 'lucide-react'
-import { doctorInfo } from '../../data/data'
+import {
+  Activity,
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
+import { doctorInfo } from "../../data/data";
 
 const footerLinks = [
-  { label: 'Home',             href: '#home'           },
-  { label: 'About',            href: '#about'          },
-  { label: 'Experience',       href: '#experience'     },
-  { label: 'Certifications',   href: '#certifications' },
-  { label: 'Skills',           href: '#skills'         },
-  { label: 'Clinical Gallery', href: '#gallery'        },
-  { label: 'Contact',          href: '#contact'        },
-]
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Skills", href: "#skills" },
+  { label: "Clinical Gallery", href: "#gallery" },
+  { label: "Contact", href: "#contact" },
+];
 
 const socials = [
   {
-    label: 'Facebook',
-    href:  'https://www.facebook.com/share/19wtoqaebK/',
-    hover: 'hover:bg-blue-600/60',
-    icon:  <Facebook className="w-4 h-4" />,
+    label: "Facebook",
+    href: "https://www.facebook.com/share/19wtoqaebK/",
+    hover: "hover:bg-blue-600/60",
+    icon: <Facebook className="w-4 h-4" />,
   },
   {
-    label: 'Instagram',
-    href:  'https://www.instagram.com/esknderzakaria?igsh=MXNjYWxlMXE1ZG5hbQ==',
-    hover: 'hover:bg-pink-600/60',
-    icon:  <Instagram className="w-4 h-4" />,
+    label: "Instagram",
+    href: "https://www.instagram.com/esknderzakaria?igsh=MXNjYWxlMXE1ZG5hbQ==",
+    hover: "hover:bg-pink-600/60",
+    icon: <Instagram className="w-4 h-4" />,
   },
   {
-    label: 'LinkedIn',
-    href:  'https://www.linkedin.com/in/esknder-zakaria-4563a01a0',
-    hover: 'hover:bg-blue-700/60',
-    icon:  <Linkedin className="w-4 h-4" />,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/esknder-zakaria-4563a01a0",
+    hover: "hover:bg-blue-700/60",
+    icon: <Linkedin className="w-4 h-4" />,
   },
-]
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@alexxxzakaria?_r=1&_t=ZS-96MUkiuJdMw", // ← غير ده للـ URL الصح
+    hover: "hover:bg-black/60",
+    icon: (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.16 8.16 0 004.77 1.52V6.82a4.85 4.85 0 01-1-.13z" />
+      </svg>
+    ),
+  },
+];
 
 export function Footer() {
   const scrollTo = (href) => {
-    const id = href.replace('#', '')
-    const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container-max px-6 md:px-12 lg:px-20 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
@@ -51,15 +68,20 @@ export function Footer() {
                 <Activity className="w-4 h-4 text-white" />
               </div>
               <div>
-                <div className="font-display font-600 text-white text-sm leading-none">{doctorInfo.name}</div>
-                <div className="font-mono text-[10px] text-teal-400 tracking-wider mt-0.5">Physiotherapist</div>
+                <div className="font-display font-600 text-white text-sm leading-none">
+                  {doctorInfo.name}
+                </div>
+                <div className="font-mono text-[10px] text-teal-400 tracking-wider mt-0.5">
+                  Physiotherapist
+                </div>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-6">
-              Evidence-based physiotherapy combining movement science with clinical excellence — restoring function and empowering lives.
+              Evidence-based physiotherapy combining movement science with
+              clinical excellence — restoring function and empowering lives.
             </p>
             <div className="flex items-center gap-3">
-              {socials.map(s => (
+              {socials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
@@ -76,9 +98,11 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="font-body font-500 text-white text-sm mb-4 tracking-wide">Navigation</h4>
+            <h4 className="font-body font-500 text-white text-sm mb-4 tracking-wide">
+              Navigation
+            </h4>
             <ul className="space-y-2.5">
-              {footerLinks.map(link => (
+              {footerLinks.map((link) => (
                 <li key={link.label}>
                   <button
                     onClick={() => scrollTo(link.href)}
@@ -93,7 +117,9 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-body font-500 text-white text-sm mb-4 tracking-wide">Contact</h4>
+            <h4 className="font-body font-500 text-white text-sm mb-4 tracking-wide">
+              Contact
+            </h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-gray-400 text-sm">
                 <MapPin className="w-4 h-4 text-teal-400 mt-0.5 flex-shrink-0" />
@@ -132,5 +158,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

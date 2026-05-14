@@ -175,8 +175,8 @@ export function Hero() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="flex flex-nowrap gap-2 mt-8 overflow-x-auto pb-1"
             >
-              <StatBadge value="3.51" label="GPA — Honors"   icon={Star}   delay={0.7} />
-              <StatBadge value="5+"   label="Certifications" icon={Award}  delay={0.8} />
+              <StatBadge value="200+" label="Patients Helped"   icon={Star}   delay={0.7} />
+              <StatBadge value="12+"   label="Certifications" icon={Award}  delay={0.8} />
               <StatBadge value="KCMT" label="Specialist"     icon={Shield} delay={0.9} />
             </motion.div>
           </div>

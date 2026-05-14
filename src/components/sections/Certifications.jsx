@@ -497,8 +497,8 @@ export function Certifications() {
             className="mt-12 grid grid-cols-3 divide-x divide-border border border-border rounded-2xl overflow-hidden"
           >
             {[
-              { value: '5',    label: 'Certifications'           },
-              { value: '3',    label: 'International Bodies'     },
+              { value: '12',    label: 'Certifications'           },
+              { value: '10',    label: 'International Bodies'     },
               { value: '2026', label: 'Most Recent'               },
             ].map(s => (
               <div key={s.label} className="py-5 text-center bg-gradient-to-b from-white to-surface">
